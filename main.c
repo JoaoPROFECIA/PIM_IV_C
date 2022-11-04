@@ -22,23 +22,22 @@ int main(void){
     }
     
     /* login do medico */
-    
-    printf("Login: ");
-    scanf("%s", login);
-    printf("Senha: ");
-    scanf("%s", senha);
+    do {
+        printf("Login: ");
+        scanf("%s", login);
+        printf("Senha: ");
+        scanf("%s", senha);
 
-    /* verificacao de login do medico */
-    if(strcmp(login, "medico") == 0 && strcmp(senha, "123") == 0){
-        printf("Login efetuado com sucesso! \n");
-    }else{
-        printf("Login ou senha incorretos! \n");
-        exit(1);
-    }
+        if(strcmp(login, "medico") == 0 && strcmp(senha, "123") == 0){
+            printf("Login efetuado com sucesso!\n");
+        } else {
+            printf("Login ou senha incorretos!\n");
+        }
+    }while (strcmp(login, "medico") != 0 || strcmp(senha, "123") != 0);
 
     /* cadastro do paciente */
     printf("Nome: ");
-    scanf("%s", nome);
+    scanf("%*s", nome);
     printf("CPF: ");
     scanf("%s", cpf);
     printf("Telefone: ");
