@@ -22,7 +22,10 @@ int main(void){
     }
     
     /* login do medico */
-    do {
+
+    // COMFLITO COM A FUNCAO DE CADASTRO DO PACIENTE "NOME"
+
+    /*do {
         printf("Login: ");
         scanf("%s", login);
         printf("Senha: ");
@@ -35,15 +38,20 @@ int main(void){
         }
     }while (strcmp(login, "medico") != 0 || strcmp(senha, "123") != 0);
 
+    */
+
     /* cadastro do paciente */
     printf("Nome: ");
-    scanf("%*s", nome);
+    // scanf("%s", nome); // nao funciona com espacos em branco 
+    // scanf("%50[^\n]", nome); // >>> para ler espaços em branco usando o scanf
+    fgets(nome,50, stdin); // fgets(nome, 50, stdin); > para ler espaços em branco usando o fgets
+    printf("O nome digitado foi: %s", nome);
     printf("CPF: ");
     scanf("%s", cpf);
     printf("Telefone: ");
     scanf("%s", telefone);
     printf("Endereco: ");
-    scanf("%s", endereco);
+    fgets(endereco, 50, stdin);
     printf("Data de nascimento: ");
     scanf("%s", data_nasc);
     printf("Email: ");
@@ -51,7 +59,7 @@ int main(void){
     printf("Data do diagnostico: ");
     scanf("%s", data_diag);
     printf("Comorbidade: ");
-    scanf("%s", comorbidade);
+    fgets(comorbidade, 50, stdin);
 
     /* escrita no arquivo */
     fprintf(Ponteiro, "\n\nNome: %s \nCPF: %s \nTelefone: %s \nEndereco: %s \nData de nascimento: %s \nEmail: %s \nData do diagnóstico: %s \nComorbidade: %s \n\n", nome, cpf, telefone, endereco, data_nasc, email, data_diag, comorbidade);
