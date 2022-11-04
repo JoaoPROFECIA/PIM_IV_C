@@ -3,70 +3,105 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 
-/* login e cadastro do paciente */
+typedef struct paciente {
+    char nome[50];
+    char cpf[11];
+    char endereco[50];
+    char telefone[11];
+    char email[50];
+    char data_nasc[10];
+    char data_diag[10];
+    char comorbidade[50];
+} Paciente;
 
-int main(void){
-    /* definicao de ponteiro para o arquivo */
-    FILE *Ponteiro;
-    /* definicao de variaveis */
-    char nome[50], cpf[11], endereco[50], telefone[11], email[50], senha[50], login[50], data_nasc[10], data_diag[10], comorbidade[50];
+typedef struct profSaude {
+    char senha[50];
+    char login[50];
+} ProfSaude;
 
-    /* abertura do arquivo */
-    Ponteiro = fopen("cadastro.txt", "a");
+void cadastro(Paciente *paciente) {
+    printf("Nome: ");
+    fflush(stdin);
+    fgets(paciente->nome, 50, stdin); // fgets(nome, 50, stdin); > para ler espaços em branco usando o fgets
+    printf("CPF: ");
+    scanf("%s", paciente->cpf); // nao funciona com espacos em branco
+    printf("Telefone: ");
+    scanf("%s", paciente->telefone);
+    printf("Endereco: ");
+    fgets(paciente->endereco, 50, stdin); 
+    printf("Data de nascimento: ");
+    scanf("%s", paciente->data_nasc);
+    printf("Email: ");
+    scanf("%s", paciente->email);
+    printf("Data do diagnostico: ");
+    scanf("%s", paciente->data_diag);
+    printf("Comorbidade: ");
+    fgets(paciente->comorbidade, 50, stdin);
+}
 
-    /* verificacao de erro na abertura do arquivo */
-    if(Ponteiro == NULL){
-        printf("Erro na abertura do arquivo!");
-        exit(1);
-    }
-    
-    /* login do medico */
-
-    // CONFLITO COM A FUNCAO DE CADASTRO DO PACIENTE "NOME"
-
-    /*do {
+void login(ProfSaude *profSaude) {
+    do {
         printf("Login: ");
-        scanf("%s", login);
+        scanf("%s", profSaude->login);
         printf("Senha: ");
-        scanf("%s", senha);
+        scanf("%s", profSaude->senha);
 
-        if(strcmp(login, "medico") == 0 && strcmp(senha, "123") == 0){
+        if (strcmp(profSaude->login, "medico") == 0 && strcmp(profSaude->senha, "123") == 0) {
             printf("Login efetuado com sucesso!\n");
         } else {
             printf("Login ou senha incorretos!\n");
         }
-    }while (strcmp(login, "medico") != 0 || strcmp(senha, "123") != 0);
+    } while (strcmp(profSaude->login, "medico") != 0 || strcmp(profSaude->senha, "123") != 0);
+}
 
-    */
+void salvar(Paciente *paciente) {
+    FILE *Ponteiro;
+    Ponteiro = fopen("cadastro.txt", "a");
 
-    /* cadastro do paciente */
-    printf("Nome: ");
-    // scanf("%s", nome); // nao funciona com espacos em branco 
-    // scanf("%50[^\n]", nome); // >>> para ler espaços em branco usando o scanf
-    fgets(nome,50, stdin); // fgets(nome, 50, stdin); > para ler espaços em branco usando o fgets
-    printf("O nome digitado foi: %s", nome);
-    printf("CPF: ");
-    scanf("%s", cpf);
-    printf("Telefone: ");
-    scanf("%s", telefone);
-    printf("Endereco: ");
-    fgets(endereco, 50, stdin);
-    printf("Data de nascimento: ");
-    scanf("%s", data_nasc);
-    printf("Email: ");
-    scanf("%s", email);
-    printf("Data do diagnostico: ");
-    scanf("%s", data_diag);
-    printf("Comorbidade: ");
-    fgets(comorbidade, 50, stdin);
+    if (Ponteiro == NULL) {
+        printf("Erro na abertura do arquivo!");
+        exit(1);
+    }
 
-    /* escrita no arquivo */
-    fprintf(Ponteiro, "\n\nNome: %s \nCPF: %s \nTelefone: %s \nEndereco: %s \nData de nascimento: %s \nEmail: %s \nData do diagnóstico: %s \nComorbidade: %s \n\n", nome, cpf, telefone, endereco, data_nasc, email, data_diag, comorbidade);
+    fprintf(Ponteiro, "Nome: %s", paciente->nome);
+    fprintf(Ponteiro, "CPF: %s", paciente->cpf);
+    fprintf(Ponteiro, "Telefone: %s", paciente->telefone);
+    fprintf(Ponteiro, "Endereco: %s", paciente->endereco);
+    fprintf(Ponteiro, "Data de nascimento: %s", paciente->data_nasc);
+    fprintf(Ponteiro, "Email: %s", paciente->email);
+    fprintf(Ponteiro, "Data do diagnostico: %s", paciente->data_diag);
+    fprintf(Ponteiro, "Comorbidade: %s", paciente->comorbidade);
+}
 
-    /* fechamento do arquivo */
-    fclose(Ponteiro);
-    printf("Cadastro finalizado");
+int main() {
+    Paciente paciente;
+    int opcao;
+
+    ProfSaude profSaude;
+    login(&profSaude);
+
+    do {
+        printf("1 - Cadastrar paciente\n");
+        printf("2 - Sair\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                cadastro(&paciente);
+                salvar(&paciente);
+                printf("Cadastro realizado com sucesso!\n");
+                printf("Cadastrar novo paciente? (1 - Sim / 2 - Nao)\n");
+                scanf("%d", &opcao);
+            case 2:
+                printf("Saindo...\n");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+        }
+    } while (opcao != 2);
 
     return 0;
 }
