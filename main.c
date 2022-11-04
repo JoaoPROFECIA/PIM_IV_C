@@ -23,7 +23,7 @@ int main(void){
     
     /* login do medico */
 
-    // COMFLITO COM A FUNCAO DE CADASTRO DO PACIENTE "NOME"
+    // CONFLITO COM A FUNCAO DE CADASTRO DO PACIENTE "NOME"
 
     /*do {
         printf("Login: ");
