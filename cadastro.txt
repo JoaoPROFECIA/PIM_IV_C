@@ -82,3 +82,56 @@ Data do diagnóstico: 12/54/3212
 Comorbidade: 
  
 
+
+
+Nome:  
+CPF: 12312312333 
+Telefone: 12123231212
+ 
+Endereco: 
+ 
+Data de nascimento:  
+Email: email@email.com 
+Data do diagnóstico: 23/23/2323 
+Comorbidade: 
+ 
+
+Nome: 
+CPF: 123Telefone: 123Endereco: 
+Data de nascimento: 234Email: e@e.comData do diagnostico: 234Comorbidade: 
+
+
+Nome: Joao Victor
+
+CPF: 12312365433
+
+Telefone: 119998877661@2.com
+Endereco: 
+
+Data de nascimento: 123
+Email: 1@2.com
+Data do diagnostico: 456
+Comorbidade: 
+
+
+Nome: Joao Victor
+
+CPF: 12345678955
+
+Telefone: 11976543728asd@email.com
+Endereco: 
+
+Data de nascimento: 12/12/121232/32/3223
+
+Email: asd@email.com
+Data do diagnostico: 32/32/3223
+
+Comorbidade: 
+
+
+Nome: Joao Victor
+CPF: 43243243223
+Telefone: 11909090909e@a.comEndereco: 
+Data de nascimento: 12/12/121223/23/2323
+Email: e@a.comData do diagnostico: 23/23/2323
+Comorbidade: 
