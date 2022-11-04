@@ -3,11 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 
 typedef struct paciente {
     char nome[50];
     char cpf[11];
-    char endereco[50];
+    char cep[9];
+    char rua[50];
+    char numero[10];
+    char bairro[50];
+    char cidade[50];
+    char estado[50];
     char telefone[11];
     char email[50];
     char data_nasc[10];
@@ -28,12 +34,24 @@ void cadastro(Paciente *paciente) {
     scanf("%s", paciente->cpf); // nao funciona com espacos em branco
     printf("Telefone: ");
     scanf("%s", paciente->telefone);
-    printf("Endereco: ");
-    fgets(paciente->endereco, 50, stdin); 
-    printf("Data de nascimento: ");
-    scanf("%s", paciente->data_nasc);
     printf("Email: ");
     scanf("%s", paciente->email);
+    printf("Endereco completo: ");
+    printf("CEP: ");
+    fgets(paciente->cep, 9, stdin); 
+    printf("Rua: ");
+    fgets(paciente->rua, 50, stdin);
+    printf("Numero: ");
+    fgets(paciente->numero, 10, stdin);
+    printf("Bairro: ");
+    fgets(paciente->bairro, 50, stdin);
+    printf("Cidade: ");
+    fgets(paciente->cidade, 50, stdin);
+    printf("Estado: ");
+    fgets(paciente->estado, 50, stdin);
+
+    printf("Data de nascimento: ");
+    scanf("%s", paciente->data_nasc);
     printf("Data do diagnostico: ");
     scanf("%s", paciente->data_diag);
     printf("Comorbidade: ");
@@ -67,9 +85,14 @@ void salvar(Paciente *paciente) {
     fprintf(Ponteiro, "Nome: %s", paciente->nome);
     fprintf(Ponteiro, "CPF: %s", paciente->cpf);
     fprintf(Ponteiro, "Telefone: %s", paciente->telefone);
-    fprintf(Ponteiro, "Endereco: %s", paciente->endereco);
-    fprintf(Ponteiro, "Data de nascimento: %s", paciente->data_nasc);
     fprintf(Ponteiro, "Email: %s", paciente->email);
+    fprintf(Ponteiro, "Endereco: %s", paciente->cep);
+    fprintf(Ponteiro, "Rua: %s", paciente->rua);
+    fprintf(Ponteiro, "Numero: %s", paciente->numero);
+    fprintf(Ponteiro, "Bairro: %s", paciente->bairro);
+    fprintf(Ponteiro, "Cidade: %s", paciente->cidade);
+    fprintf(Ponteiro, "Estado: %s", paciente->estado);
+    fprintf(Ponteiro, "Data de nascimento: %s", paciente->data_nasc);
     fprintf(Ponteiro, "Data do diagnostico: %s", paciente->data_diag);
     fprintf(Ponteiro, "Comorbidade: %s", paciente->comorbidade);
 }
