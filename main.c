@@ -1,10 +1,11 @@
 /* Programa para cadastro de pacientes diagnosticados com Covid-19 */
+#include <stdio.h> /* printf, scanf, fgets */
+#include <stdlib.h> /* malloc */
+#include <string.h> /* para usar o fgets */
+#include <locale.h> /* para usar acentos */
+#include <unistd.h> /* para usar a funcao sleep */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <locale.h>
-
+/* Definindo a struct Paciente e ProfSaude */
 typedef struct paciente {
     char nome[50];
     char cpf[11];
@@ -26,12 +27,14 @@ typedef struct profSaude {
     char login[50];
 } ProfSaude;
 
+
+/* funcao para cadastrar paciente */
 void cadastro(Paciente *paciente) {
     printf("Nome: ");
     fflush(stdin);
-    fgets(paciente->nome, 50, stdin); // fgets(nome, 50, stdin); > para ler espaços em branco usando o fgets
+    fgets(paciente->nome, 50, stdin); /* fgets > para ler espaços em branco usando o fgets */
     printf("CPF: ");
-    scanf("%s", paciente->cpf); // nao funciona com espacos em branco
+    scanf("%s", paciente->cpf); /* scanf > nao funciona com espacos em branco */
     printf("Telefone: ");
     scanf("%s", paciente->telefone);
     printf("Email: ");
@@ -49,7 +52,6 @@ void cadastro(Paciente *paciente) {
     fgets(paciente->cidade, 50, stdin);
     printf("Estado: ");
     fgets(paciente->estado, 50, stdin);
-
     printf("Data de nascimento: ");
     scanf("%s", paciente->data_nasc);
     printf("Data do diagnostico: ");
@@ -58,6 +60,8 @@ void cadastro(Paciente *paciente) {
     fgets(paciente->comorbidade, 50, stdin);
 }
 
+
+/* funcao para login do profissional de saude */
 void login(ProfSaude *profSaude) {
     do {
         printf("Login: ");
@@ -73,6 +77,8 @@ void login(ProfSaude *profSaude) {
     } while (strcmp(profSaude->login, "medico") != 0 || strcmp(profSaude->senha, "123") != 0);
 }
 
+
+/* funcao para salvar os dados do paciente em um arquivo */
 void salvar(Paciente *paciente) {
     FILE *Ponteiro;
     Ponteiro = fopen("cadastro.txt", "a");
@@ -97,6 +103,8 @@ void salvar(Paciente *paciente) {
     fprintf(Ponteiro, "Comorbidade: %s", paciente->comorbidade);
 }
 
+
+/* Programa principal */
 int main() {
     Paciente paciente;
     int opcao;
@@ -118,7 +126,11 @@ int main() {
                 printf("Cadastrar novo paciente? (1 - Sim / 2 - Nao)\n");
                 scanf("%d", &opcao);
             case 2:
-                printf("Saindo...\n");
+                printf("Salvando e saindo");
+                for (int i = 0; i < 3; i++) {
+                    printf(".");
+                    sleep(1);
+                }
                 break;
             default:
                 printf("Opcao invalida!\n");
