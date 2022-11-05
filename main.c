@@ -1,12 +1,15 @@
 /* Programa para cadastro de pacientes diagnosticados com Covid-19 */
-#include <stdio.h> /* printf, scanf, fgets */
-#include <stdlib.h> /* malloc */
-#include <string.h> /* para usar o fgets */
-#include <locale.h> /* para usar acentos */
-#include <unistd.h> /* para usar a funcao sleep */
+#include <stdio.h>   /* printf, scanf, fgets */
+#include <stdlib.h>  /* system */
+#include <string.h>  /* para usar o fgets */
+#include <locale.h>  /* para usar acentos */
+#include <unistd.h>  /* para usar a funcao sleep */
 
-/* Definindo a struct Paciente e ProfSaude */
-typedef struct paciente {
+
+/* definindo a struct Paciente e ProfSaude */
+typedef struct paciente 
+{
+    /* constantes do paciente */
     char nome[50];
     char cpf[11];
     char cep[9];
@@ -20,21 +23,28 @@ typedef struct paciente {
     char data_nasc[10];
     char data_diag[10];
     char comorbidade[50];
+
 } Paciente;
 
-typedef struct profSaude {
+
+typedef struct profSaude 
+{
+    /* constantes de login do profissional */
     char senha[50];
     char login[50];
+
 } ProfSaude;
 
 
 /* funcao para cadastrar paciente */
-void cadastro(Paciente *paciente) {
+void cadastro(Paciente *paciente) 
+{
+
     printf("Nome: ");
     fflush(stdin);
-    fgets(paciente->nome, 50, stdin); /* fgets > para ler espaços em branco usando o fgets */
+    fgets(paciente->nome, 50, stdin);  /* fgets > para ler espaços em branco usando o fgets */
     printf("CPF: ");
-    scanf("%s", paciente->cpf); /* scanf > nao funciona com espacos em branco */
+    scanf("%s", paciente->cpf);        /* scanf > nao funciona com espacos em branco */
     printf("Telefone: ");
     scanf("%s", paciente->telefone);
     printf("Email: ");
@@ -58,11 +68,14 @@ void cadastro(Paciente *paciente) {
     scanf("%s", paciente->data_diag);
     printf("Comorbidade: ");
     fgets(paciente->comorbidade, 50, stdin);
+
 }
 
 
 /* funcao para login do profissional de saude */
-void login(ProfSaude *profSaude) {
+void login(ProfSaude *profSaude) 
+{
+
     do {
         printf("Login: ");
         scanf("%s", profSaude->login);
@@ -71,19 +84,26 @@ void login(ProfSaude *profSaude) {
 
         if (strcmp(profSaude->login, "medico") == 0 && strcmp(profSaude->senha, "123") == 0) {
             printf("Login efetuado com sucesso!\n");
+        
         } else {
             printf("Login ou senha incorretos!\n");
+        
         }
+    
     } while (strcmp(profSaude->login, "medico") != 0 || strcmp(profSaude->senha, "123") != 0);
+
 }
 
 
 /* funcao para salvar os dados do paciente em um arquivo */
-void salvar(Paciente *paciente) {
+void salvar(Paciente *paciente) 
+{
+
     FILE *Ponteiro;
     Ponteiro = fopen("cadastro.txt", "a");
 
-    if (Ponteiro == NULL) {
+    if (Ponteiro == NULL) 
+    {
         printf("Erro na abertura do arquivo!");
         exit(1);
     }
@@ -104,15 +124,15 @@ void salvar(Paciente *paciente) {
 }
 
 
-/* Programa principal */
-int main() {
+/* funcao para menu */
+void menu()
+{
+
     Paciente paciente;
     int opcao;
 
-    ProfSaude profSaude;
-    login(&profSaude);
-
-    do {
+    do 
+    {
         printf("1 - Cadastrar paciente\n");
         printf("2 - Sair\n");
         printf("Opcao: ");
@@ -123,8 +143,7 @@ int main() {
                 cadastro(&paciente);
                 salvar(&paciente);
                 printf("Cadastro realizado com sucesso!\n");
-                printf("Cadastrar novo paciente? (1 - Sim / 2 - Nao)\n");
-                scanf("%d", &opcao);
+
             case 2:
                 printf("Salvando e saindo");
                 for (int i = 0; i < 3; i++) {
@@ -132,10 +151,26 @@ int main() {
                     sleep(1);
                 }
                 break;
-            default:
+
+            default:                      
                 printf("Opcao invalida!\n");
+
         }
+
     } while (opcao != 2);
 
+}
+
+
+/* programa principal */
+int main() 
+{
+
+    ProfSaude profSaude;  /* declarando a struct ProfSaude */
+
+    login(&profSaude);    /* chamando a funcao login */
+    menu();               /* chamando a funcao menu */
+
     return 0;
+
 }

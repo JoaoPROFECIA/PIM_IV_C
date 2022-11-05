@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/victo/OneDrive - UNIP/UNIP/ADS/2 - 2 - PIM IV/PIM_IV_C",
-      "program": "c:/Users/victo/OneDrive - UNIP/UNIP/ADS/2 - 2 - PIM IV/PIM_IV_C/build/Debug/outDebug",
+      "cwd": "c:/Users/victo/Documents/GitHub/PIM_IV_C",
+      "program": "c:/Users/victo/Documents/GitHub/PIM_IV_C/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

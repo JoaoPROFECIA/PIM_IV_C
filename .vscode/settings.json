@@ -39,6 +39,7 @@
     "**/templates/**/*.html": "django-html",
     "**/base_templates/**/*.html": "django-html",
     "**/requirements{/**,*}.{txt,in}": "pip-requirements",
-    "string.h": "c"
+    "string.h": "c",
+    "locale.h": "c"
   }
 }
