@@ -27,8 +27,33 @@ typedef struct profSaude {
     char login[50];
 } ProfSaude;
 
+/* funcao para calculo de idade do paciente */
+void calculaIdade(Paciente *paciente) {
+    int dia, mes, ano, diaAtual, mesAtual, anoAtual, idade;
+    printf("Digite a data de nascimento do paciente: ");
+    scanf("%d/%d/%d", &dia, &mes, &ano);
+    printf("Digite a data atual: ");
+    scanf("%d/%d/%d", &diaAtual, &mesAtual, &anoAtual);
+    idade = anoAtual - ano;
+    if (mesAtual < mes) {
+        idade--;
+    } else if (mesAtual == mes) {
+        if (diaAtual < dia) {
+            idade--;
+        }
+    }
+    printf("Idade: %d anos\n", idade);
+    if (idade >= 65) {
+        printf("Paciente com comorbidade: SIM\n");
+    } else {
+        printf("Paciente com comorbidade: NAO\n");
+    }
+}
+
 /* funcao para cadastrar paciente */
 void cadastro(Paciente *paciente) {
+    printf(" -- Cadastro de paciente -- \n");
+    calculaIdade(paciente);
     printf("\nPreencha os dados abaixo\n\n");
     printf("Nome: ");
     fflush(stdin); /* stdin > limpa o buffer do teclado */
@@ -89,29 +114,8 @@ void login(ProfSaude *profSaude) {
         } while (strcmp(profSaude->login, "medico") != 0 || strcmp(profSaude->senha, "123") != 0);
 }
 
-/* funcao para calculo de idade do paciente */
-void calculaIdade(Paciente *paciente) {
-    int dia, mes, ano, diaAtual, mesAtual, anoAtual, idade;
-    printf("Digite a data de nascimento do paciente: ");
-    scanf("%d/%d/%d", &dia, &mes, &ano);
-    printf("Digite a data atual: ");
-    scanf("%d/%d/%d", &diaAtual, &mesAtual, &anoAtual);
-    idade = anoAtual - ano;
-    if (mesAtual < mes) {
-        idade--;
-    } else if (mesAtual == mes) {
-        if (diaAtual < dia) {
-            idade--;
-        }
-    }
-    printf("Idade: %d anos\n", idade);
-}
-
 /* funcao para salvar os dados do paciente em um arquivo */
 void salvar(Paciente *paciente) {
-   
-    // >>> if idade >= 65 {}
-   
     FILE *Ponteiro;
     Ponteiro = fopen("cadastro.txt", "a"); /* a > para adicionar no final do arquivo
     ||| w > para sobrescrever o arquivo */
