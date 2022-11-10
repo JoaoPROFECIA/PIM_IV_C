@@ -155,6 +155,6 @@ int main() {
     ProfSaude profSaude;
     login(&profSaude);
 
-    menu( );
+    menu();
     return 0;
 }
