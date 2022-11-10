@@ -89,8 +89,29 @@ void login(ProfSaude *profSaude) {
         } while (strcmp(profSaude->login, "medico") != 0 || strcmp(profSaude->senha, "123") != 0);
 }
 
+/* funcao para calculo de idade do paciente */
+void calculaIdade(Paciente *paciente) {
+    int dia, mes, ano, diaAtual, mesAtual, anoAtual, idade;
+    printf("Digite a data de nascimento do paciente: ");
+    scanf("%d/%d/%d", &dia, &mes, &ano);
+    printf("Digite a data atual: ");
+    scanf("%d/%d/%d", &diaAtual, &mesAtual, &anoAtual);
+    idade = anoAtual - ano;
+    if (mesAtual < mes) {
+        idade--;
+    } else if (mesAtual == mes) {
+        if (diaAtual < dia) {
+            idade--;
+        }
+    }
+    printf("Idade: %d anos\n", idade);
+}
+
 /* funcao para salvar os dados do paciente em um arquivo */
 void salvar(Paciente *paciente) {
+   
+    // >>> if idade >= 65 {}
+   
     FILE *Ponteiro;
     Ponteiro = fopen("cadastro.txt", "a"); /* a > para adicionar no final do arquivo
     ||| w > para sobrescrever o arquivo */
