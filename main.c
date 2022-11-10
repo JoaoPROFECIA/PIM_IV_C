@@ -5,7 +5,6 @@
 #include <locale.h> /* para usar acentos */
 #include <unistd.h> /* para usar a funcao sleep */
 
-
 /* Definindo a struct Paciente e ProfSaude */
 typedef struct paciente {
     char nome[50];
@@ -27,7 +26,6 @@ typedef struct profSaude {
     char senha[50];
     char login[50];
 } ProfSaude;
-
 
 /* funcao para cadastrar paciente */
 void cadastro(Paciente *paciente) {
@@ -75,7 +73,6 @@ void cadastro(Paciente *paciente) {
     fgets(paciente->comorbidade, 50, stdin);
 }
 
-
 /* funcao para login do profissional de saude */
 void login(ProfSaude *profSaude) {
     do {
@@ -93,7 +90,6 @@ void login(ProfSaude *profSaude) {
         } while (strcmp(profSaude->login, "medico") != 0 || strcmp(profSaude->senha, "123") != 0);
 }
 
-
 /* funcao para salvar os dados do paciente em um arquivo */
 void salvar(Paciente *paciente) {
     FILE *Ponteiro;
@@ -107,7 +103,6 @@ void salvar(Paciente *paciente) {
     fprintf(Ponteiro, "\nNome: %s, \nCPF: %s, \nTelefone: %s, \nEmail: %s, \nENDERECO COMPLETO\nCEP: %s, RUA: %s, NUMERO: %s, BAIRRO: %s, CIDADE: %s, ESTADO: %s, \nData de nascimento: %s, \nData do diagnostico: %s, \nComorbidade: %s", paciente->nome, paciente->cpf, paciente->telefone, paciente->email, paciente->cep, paciente->rua,paciente->numero, paciente->bairro, paciente->cidade, paciente->estado, paciente->data_nasc, paciente->data_diag,paciente->comorbidade); /* fprintf > escreve no arquivo ||| printf > escreve na tela */
     fclose(Ponteiro);
 }
-
 
 /* funcao menu */
 void menu() {
