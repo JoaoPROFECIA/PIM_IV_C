@@ -32,8 +32,7 @@ void cadastro(Paciente *paciente) {
     printf("\nPreencha os dados abaixo\n\n");
     printf("Nome: ");
     fflush(stdin); /* stdin > limpa o buffer do teclado */
-    fgets(paciente->nome, 50, stdin); /* fgets > para ler espaços em branco usando o
-    fgets ||| scanf > nao funciona com espacos em branco */
+    fgets(paciente->nome, 50, stdin); /* fgets > para ler espaços em branco usando o fgets ||| scanf > nao funciona com espacos em branco */
     printf("CPF (somente numeros): ");
     fflush(stdin);
     fgets(paciente->cpf, 11, stdin);
