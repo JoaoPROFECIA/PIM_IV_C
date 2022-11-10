@@ -99,7 +99,7 @@ void salvar(Paciente *paciente) {
         exit(1);
     }
 
-    fprintf(Ponteiro, "\nNome: %s, \nCPF: %s, \nTelefone: %s, \nEmail: %s, \nENDERECO COMPLETO\nCEP: %s, RUA: %s, NUMERO: %s, BAIRRO: %s, CIDADE: %s, ESTADO: %s, \nData de nascimento: %s, \nData do diagnostico: %s, \nComorbidade: %s", paciente->nome, paciente->cpf, paciente->telefone, paciente->email, paciente->cep, paciente->rua,paciente->numero, paciente->bairro, paciente->cidade, paciente->estado, paciente->data_nasc, paciente->data_diag,paciente->comorbidade); /* fprintf > escreve no arquivo ||| printf > escreve na tela */
+    fprintf(Ponteiro, "\nNome: %sCPF: %s\nTelefone: %sEmail: %sENDERECO COMPLETO\nCEP: %s RUA: %s NUMERO: %s BAIRRO: %s CIDADE: %s ESTADO: %sData de nascimento: %s\nData do diagnostico: %s\nComorbidade: %s", paciente->nome, paciente->cpf, paciente->telefone, paciente->email, paciente->cep, paciente->rua,paciente->numero, paciente->bairro, paciente->cidade, paciente->estado, paciente->data_nasc, paciente->data_diag,paciente->comorbidade); /* fprintf > escreve no arquivo ||| printf > escreve na tela */
     fclose(Ponteiro);
 }
 
