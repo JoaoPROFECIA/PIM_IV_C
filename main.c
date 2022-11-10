@@ -9,14 +9,14 @@
 typedef struct paciente {
     char nome[50];
     char cpf[11];
-    char cep[9];
+    char telefone[20];
+    char email[50];
+    char cep[12];
     char rua[50];
     char numero[10];
     char bairro[50];
     char cidade[50];
     char estado[50];
-    char telefone[11];
-    char email[50];
     char data_nasc[10];
     char data_diag[10];
     char comorbidade[50];
@@ -30,33 +30,46 @@ typedef struct profSaude {
 
 /* funcao para cadastrar paciente */
 void cadastro(Paciente *paciente) {
+    printf("\nPreencha os dados abaixo\n\n");
     printf("Nome: ");
+    fflush(stdin); /* stdin > limpa o buffer do teclado */
+    fgets(paciente->nome, 50, stdin); /* fgets > para ler espaços em branco usando o fgets ||| scanf > nao funciona com espacos em branco */
+    printf("CPF (somente numeros): ");
     fflush(stdin);
-    fgets(paciente->nome, 50, stdin); /* fgets > para ler espaços em branco usando o fgets */
-    printf("CPF: ");
-    scanf("%s", paciente->cpf); /* scanf > nao funciona com espacos em branco */
-    printf("Telefone: ");
-    scanf("%s", paciente->telefone);
+    fgets(paciente->cpf, 11, stdin); 
+    printf("Telefone com DDD (somente numeros): ");
+    fflush(stdin);
+    fgets(paciente->telefone, 20, stdin);
     printf("Email: ");
-    scanf("%s", paciente->email);
-    printf("Endereco completo: ");
+    fflush(stdin);
+    fgets(paciente->email, 50, stdin);
+    printf("ENDERECO COMPLETO: \n");
     printf("CEP: ");
-    fgets(paciente->cep, 9, stdin); 
+    fflush(stdin);
+    fgets(paciente->cep, 12, stdin); 
     printf("Rua: ");
+    fflush(stdin);
     fgets(paciente->rua, 50, stdin);
     printf("Numero: ");
+    fflush(stdin);
     fgets(paciente->numero, 10, stdin);
     printf("Bairro: ");
+    fflush(stdin);
     fgets(paciente->bairro, 50, stdin);
     printf("Cidade: ");
+    fflush(stdin);
     fgets(paciente->cidade, 50, stdin);
     printf("Estado: ");
+    fflush(stdin);
     fgets(paciente->estado, 50, stdin);
     printf("Data de nascimento: ");
+    fflush(stdin);
     scanf("%s", paciente->data_nasc);
     printf("Data do diagnostico: ");
+    fflush(stdin);
     scanf("%s", paciente->data_diag);
     printf("Comorbidade: ");
+    fflush(stdin);
     fgets(paciente->comorbidade, 50, stdin);
 }
 
@@ -64,15 +77,16 @@ void cadastro(Paciente *paciente) {
 /* funcao para login do profissional de saude */
 void login(ProfSaude *profSaude) {
     do {
+        printf("Realize o login para continuar\n");
         printf("Login: ");
         scanf("%s", profSaude->login);
         printf("Senha: ");
         scanf("%s", profSaude->senha);
 
         if (strcmp(profSaude->login, "medico") == 0 && strcmp(profSaude->senha, "123") == 0) {
-            printf("Login efetuado com sucesso!\n");
+            printf("\nLogin efetuado com sucesso!\n\n");
         } else {
-            printf("Login ou senha incorretos!\n");
+            printf("\nLogin ou senha incorretos!\n\n");
         }
     } while (strcmp(profSaude->login, "medico") != 0 || strcmp(profSaude->senha, "123") != 0);
 }
@@ -81,26 +95,16 @@ void login(ProfSaude *profSaude) {
 /* funcao para salvar os dados do paciente em um arquivo */
 void salvar(Paciente *paciente) {
     FILE *Ponteiro;
-    Ponteiro = fopen("cadastro.txt", "a");
+    Ponteiro = fopen("cadastro.txt", "a"); /* a > para adicionar no final do arquivo ||| w > para sobrescrever o arquivo */
 
     if (Ponteiro == NULL) {
         printf("Erro na abertura do arquivo!");
         exit(1);
     }
 
-    fprintf(Ponteiro, "Nome: %s", paciente->nome);
-    fprintf(Ponteiro, "CPF: %s", paciente->cpf);
-    fprintf(Ponteiro, "Telefone: %s", paciente->telefone);
-    fprintf(Ponteiro, "Email: %s", paciente->email);
-    fprintf(Ponteiro, "Endereco: %s", paciente->cep);
-    fprintf(Ponteiro, "Rua: %s", paciente->rua);
-    fprintf(Ponteiro, "Numero: %s", paciente->numero);
-    fprintf(Ponteiro, "Bairro: %s", paciente->bairro);
-    fprintf(Ponteiro, "Cidade: %s", paciente->cidade);
-    fprintf(Ponteiro, "Estado: %s", paciente->estado);
-    fprintf(Ponteiro, "Data de nascimento: %s", paciente->data_nasc);
-    fprintf(Ponteiro, "Data do diagnostico: %s", paciente->data_diag);
-    fprintf(Ponteiro, "Comorbidade: %s", paciente->comorbidade);
+    fprintf(Ponteiro, "\nNome: %s, \nCPF: %s, \nTelefone: %s, \nEmail: %s, \nENDERECO COMPLETO\nCEP: %s, RUA: %s, NUMERO: %s, BAIRRO: %s, CIDADE: %s, ESTADO: %s, \nData de nascimento: %s, \nData do diagnostico: %s, \nComorbidade: %s", paciente->nome, paciente->cpf, paciente->telefone, paciente->email, paciente->cep, paciente->rua, paciente->numero, paciente->bairro, paciente->cidade, paciente->estado, paciente->data_nasc, paciente->data_diag,paciente->comorbidade); /* fprintf > escreve no arquivo ||| printf > escreve na tela */
+
+    fclose(Ponteiro);
 }
 
 
@@ -113,24 +117,34 @@ int main() {
     login(&profSaude);
 
     do {
+        printf("Bem vindo ao sistema de cadastro de pacientes com Covid-19!\n\n");
+        printf("Escolha uma opcao:\n");
         printf("1 - Cadastrar paciente\n");
-        printf("2 - Sair\n");
+        printf("2 - Sair\n\n");
         printf("Opcao: ");
-        scanf("%d", &opcao);
+        scanf("\n%d", &opcao);
 
         switch (opcao) {
             case 1:
                 cadastro(&paciente);
                 salvar(&paciente);
-                printf("Cadastro realizado com sucesso!\n");
-                printf("Cadastrar novo paciente? (1 - Sim / 2 - Nao)\n");
-                scanf("%d", &opcao);
-            case 2:
-                printf("Salvando e saindo");
-                for (int i = 0; i < 3; i++) {
+                printf("Cadastro realizado com sucesso!\n\n");
+                printf("1 - Retornar ao menu\n2 - Sair\n");
+                printf("Opcao: ");
+                scanf("\n%d", &opcao);
+                if (opcao == 1) {
+                    return (main());
+                }
+                else if (opcao == 2) {  /* para encerrar o programa apos o cadastro */
+                    printf("Salvando dados e saindo");
+                    for (int i = 0; i < 3; i++) {
                     printf(".");
                     sleep(1);
+                    }
+                    break;
                 }
+            case 2:  /* para encerrar o programa sem realizar o cadastro */
+                printf("Saindo");               
                 break;
             default:
                 printf("Opcao invalida!\n");
