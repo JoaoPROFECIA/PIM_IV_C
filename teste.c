@@ -42,6 +42,7 @@ void calculaIdade(Paciente *paciente) {
         }
     }
     printf("Idade: %d anos\n", idade);
+    return idade;
 }
 
 int main() {

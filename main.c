@@ -27,9 +27,11 @@ typedef struct profSaude {
     char login[50];
 } ProfSaude;
 
+int idade;
+
 /* funcao para calculo de idade do paciente */
 void calculaIdade(Paciente *paciente) {
-    int dia, mes, ano, diaAtual, mesAtual, anoAtual, idade;
+    int dia, mes, ano, diaAtual, mesAtual, anoAtual;
     printf("Digite a data de nascimento do paciente: ");
     scanf("%d/%d/%d", &dia, &mes, &ano);
     printf("Digite a data atual: ");
@@ -126,6 +128,22 @@ void salvar(Paciente *paciente) {
 
     fprintf(Ponteiro, "\nNome: %sCPF: %s\nTelefone: %sEmail: %sENDERECO COMPLETO\nCEP: %s RUA: %s NUMERO: %s BAIRRO: %s CIDADE: %s ESTADO: %sData de nascimento: %s\nData do diagnostico: %s\nComorbidade: %s", paciente->nome, paciente->cpf, paciente->telefone, paciente->email, paciente->cep, paciente->rua,paciente->numero, paciente->bairro, paciente->cidade, paciente->estado, paciente->data_nasc, paciente->data_diag,paciente->comorbidade); /* fprintf > escreve no arquivo ||| printf > escreve na tela */
     fclose(Ponteiro);
+
+    FILE *Ponteiro2;
+    Ponteiro2 = fopen("paciente-grupo-de-risco.txt", "a"); /* a > para adicionar no final do arquivo */
+    if (Ponteiro2 == NULL) {
+        printf("Erro na abertura do arquivo!");
+        exit(1);
+    }
+
+    if(calculaIdade >= 65 ) {
+        fprintf(Ponteiro2, "\nCEP: %sIdade: %d\n", paciente->cep, idade);
+        fclose(Ponteiro2);
+    }
+
+    else {
+        fclose(Ponteiro2);
+    };
 }
 
 /* funcao menu */
@@ -174,7 +192,6 @@ void menu() {
 /* Programa principal */
 int main() {
     Paciente paciente;
-    int opcao;
 
     ProfSaude profSaude;
     login(&profSaude);
