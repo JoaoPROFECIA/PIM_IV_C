@@ -5,6 +5,10 @@
 #include <locale.h> /* para usar acentos */
 #include <unistd.h> /* para usar a funcao sleep */
 
+
+// funcao INT retorna, ao contrario da VOID que nao retorna
+
+
 /* Definindo a struct Paciente e ProfSaude */
 typedef struct paciente {
     char nome[50];
