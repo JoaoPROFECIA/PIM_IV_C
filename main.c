@@ -28,14 +28,11 @@ typedef struct paciente {
 
 
 typedef struct profSaude {
-    
-
 
 } ProfSaude;
 
 
 int idade, dia, mes, ano, diaAtual, mesAtual, anoAtual;
-
 
 
 /* funcao para calculo de idade do paciente */
@@ -139,9 +136,11 @@ void salvar(Paciente *paciente) {
         printf("Erro na abertura do arquivo!");
         exit(1);
     }
+    
     int intDia = dia;
     int intMes = mes;
     int intAno = ano;
+
     fprintf(Ponteiro, 
     "\n\nNome ----------------: %s\
     \rCPF -----------------: %s\n\
