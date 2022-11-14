@@ -12,34 +12,49 @@
 /* Definindo a struct Paciente e ProfSaude */
 typedef struct paciente {
     char nome[50];
-    char cpf[11];
-    char telefone[20];
+    int  nascDia[50];
+    int  nascMes[50];
+    int  nascAno[50];
+    char cpf[50];
     char email[50];
-    char cep[12];
-    char rua[50];
-    char numero[10];
-    char bairro[50];
-    char cidade[50];
-    char estado[50];
-    char data_nasc[11];
-    char data_diag[11];
+    char telefone[50];
+    char endereco[100];
+    char cep[50];
     char comorbidade[50];
+    int idade[50];
+    char resp [50];
+
 } Paciente;
 
+
 typedef struct profSaude {
-    char senha[50];
-    char login[50];
+    
+
+
 } ProfSaude;
 
-int idade;
+
+int idade, dia, mes, ano, diaAtual, mesAtual, anoAtual;
+
+
 
 /* funcao para calculo de idade do paciente */
 void calculaIdade(Paciente *paciente) {
-    int dia, mes, ano, diaAtual, mesAtual, anoAtual;
-    printf("Digite a data de nascimento do paciente: ");
-    scanf("%d/%d/%d", &dia, &mes, &ano);
-    printf("Digite a data atual: ");
-    scanf("%d/%d/%d", &diaAtual, &mesAtual, &anoAtual);
+    printf("\nDigite a data de nascimento do paciente:\n\n");
+    printf("Dia: ");
+    scanf("%d", &dia);
+    printf("Mes: ");
+    scanf("%d", &mes);
+    printf("Ano: ");
+    scanf("%d", &ano);
+    printf("\nDigite a data atual:\n\n");
+    printf("Dia: ");
+    scanf("%d", &diaAtual);
+    printf("Mes: ");
+    scanf("%d", &mesAtual);
+    printf("Ano: ");
+    scanf("%d", &anoAtual);
+
     idade = anoAtual - ano;
     if (mesAtual < mes) {
         idade--;
@@ -48,18 +63,18 @@ void calculaIdade(Paciente *paciente) {
             idade--;
         }
     }
-    printf("Idade: %d anos\n", idade);
+
+    printf("\nIdade: %d anos\n\n", idade);
     if (idade >= 65) {
-        printf("Paciente com comorbidade: SIM\n");
+        printf("Paciente incluido no grupo de risco\n\n");
     } else {
-        printf("Paciente com comorbidade: NAO\n");
+        printf("Paciente nao incluido no grupo de risco\n\n");
     }
 }
 
 /* funcao para cadastrar paciente */
 void cadastro(Paciente *paciente) {
-    printf(" -- Cadastro de paciente -- \n");
-    calculaIdade(paciente);
+    printf(" -- Cadastro de paciente -- \n\n");
     printf("\nPreencha os dados abaixo\n\n");
     printf("Nome: ");
     fflush(stdin); /* stdin > limpa o buffer do teclado */
@@ -73,51 +88,46 @@ void cadastro(Paciente *paciente) {
     printf("Email: ");
     fflush(stdin);
     fgets(paciente->email, 50, stdin);
-    printf("ENDERECO COMPLETO: \n");
     printf("CEP: ");
     fflush(stdin);
     fgets(paciente->cep, 12, stdin);
-    printf("Rua: ");
+    printf("ENDERECO COMPLETO: ");
     fflush(stdin);
-    fgets(paciente->rua, 50, stdin);
-    printf("Numero: ");
+    fgets(paciente->endereco, 100, stdin);
+    calculaIdade(paciente);
+    printf("Possui alguma comorbidade? (s/n): ");
     fflush(stdin);
-    fgets(paciente->numero, 10, stdin);
-    printf("Bairro: ");
-    fflush(stdin);
-    fgets(paciente->bairro, 50, stdin);
-    printf("Cidade: ");
-    fflush(stdin);
-    fgets(paciente->cidade, 50, stdin);
-    printf("Estado: ");
-    fflush(stdin);
-    fgets(paciente->estado, 50, stdin);
-    printf("Data de nascimento: ");
-    fflush(stdin);
-    fgets(paciente->data_nasc, 11, stdin);
-    printf("Data do diagnostico: ");
-    fflush(stdin);
-    fgets(paciente->data_diag, 11, stdin);
-    printf("Comorbidade: ");
-    fflush(stdin);
-    fgets(paciente->comorbidade, 50, stdin);
+    fgets(paciente->resp, 2, stdin);
+    if (paciente->resp[0] == 's') {
+        printf("Qual? ");
+        fflush(stdin);
+        fgets(paciente->comorbidade, 50, stdin);
+    } else if (paciente->resp[0] == 'n') {
+        printf("\nNao possui comorbidade\n");
+    } else {
+        printf("Opcao invalida\n");
+    }
 }
 
 /* funcao para login do profissional de saude */
 void login(ProfSaude *profSaude) {
+    char login[50] = "admin";
+    char login1[50];
+    char senha[50] = "123456";
+    char senha1[50];
     do {
         printf("Realize o login para continuar\n");
         printf("Login: ");
-        scanf("%s", profSaude->login);
+        scanf("%s", login1);
         printf("Senha: ");
-        scanf("%s", profSaude->senha);
-        if (strcmp(profSaude->login, "medico") == 0 && strcmp(profSaude->senha, "123") == 0) 
+        scanf("%s", senha1);
+        if (strcmp(login, login1) == 0 && strcmp(senha, senha1) == 0) 
         {
             printf("\nLogin efetuado com sucesso!\n\n");
         } else {
             printf("\nLogin ou senha incorretos!\n\n");
         }
-        } while (strcmp(profSaude->login, "medico") != 0 || strcmp(profSaude->senha, "123") != 0);
+    } while (strcmp(login, login1) != 0 || strcmp(senha, senha1) != 0);
 }
 
 /* funcao para salvar os dados do paciente em um arquivo */
@@ -129,25 +139,53 @@ void salvar(Paciente *paciente) {
         printf("Erro na abertura do arquivo!");
         exit(1);
     }
-
-    fprintf(Ponteiro, "\nNome: %sCPF: %s\nTelefone: %sEmail: %sENDERECO COMPLETO\nCEP: %s RUA: %s NUMERO: %s BAIRRO: %s CIDADE: %s ESTADO: %sData de nascimento: %s\nData do diagnostico: %s\nComorbidade: %s", paciente->nome, paciente->cpf, paciente->telefone, paciente->email, paciente->cep, paciente->rua,paciente->numero, paciente->bairro, paciente->cidade, paciente->estado, paciente->data_nasc, paciente->data_diag,paciente->comorbidade); /* fprintf > escreve no arquivo ||| printf > escreve na tela */
+    int intDia = dia;
+    int intMes = mes;
+    int intAno = ano;
+    fprintf(Ponteiro, 
+    "\n\nNome ----------------: %s\
+    \rCPF -----------------: %s\n\
+    \rTelefone ------------: %s\
+    \rEmail ---------------: %s\
+    \rCEP -----------------: %s\
+    \rENDERECO COMPLETO ---: %s\
+    \rData de nascimento --: %d/%d/%d\n\
+    \rComorbidade ---------: %s\n\
+    \r====================================\n", 
+    paciente->nome, 
+    paciente->cpf, 
+    paciente->telefone, 
+    paciente->email, 
+    paciente->cep, 
+    paciente->endereco, 
+    intDia, 
+    intMes, 
+    intAno, 
+    paciente->comorbidade); /* fprintf > escreve no arquivo ||| printf > escreve na tela */
     fclose(Ponteiro);
 
-    FILE *Ponteiro2;
-    Ponteiro2 = fopen("paciente-grupo-de-risco.txt", "a"); /* a > para adicionar no final do arquivo */
-    if (Ponteiro2 == NULL) {
-        printf("Erro na abertura do arquivo!");
-        exit(1);
-    }
-
-    if(calculaIdade >= 65 ) {
-        fprintf(Ponteiro2, "\nCEP: %sIdade: %d\n", paciente->cep, idade);
+    if (idade >= 65 ) {
+        FILE *Ponteiro2;
+        Ponteiro2 = fopen("grupoderisco.txt", "a"); /* a > para adicionar no final do arquivo */
+        if (Ponteiro2 == NULL) {
+            printf("Erro na abertura do arquivo!");
+            exit(1);
+            }
+        fprintf(Ponteiro2, 
+        "\n\nNome ---------------: %s\
+        \rIdade --------------: %d\n\
+        \rCPF ----------------: %s\n\
+        \rCEP ----------------: %s\
+        \rComorbidade---------: %s\n\
+        \rO Paciente foi identificado como pertencente ao grupo de risco.\n\
+        \r====================================\n", 
+        paciente->nome, 
+        idade, 
+        paciente->cpf, 
+        paciente->cep, 
+        paciente->comorbidade);
         fclose(Ponteiro2);
     }
-
-    else {
-        fclose(Ponteiro2);
-    };
 }
 
 /* funcao menu */

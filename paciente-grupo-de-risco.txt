@@ -25,3 +25,9 @@ Idade: 23
 
 CEP: 32321-321
 Idade: 23
+
+CEP: 12345-678
+Idade: 103
+
+CEP: 123
+Idade: 92
