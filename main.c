@@ -140,7 +140,10 @@ void salvar(Paciente *paciente) {
     int intDia = dia;
     int intMes = mes;
     int intAno = ano;
-
+    int diagDia = diaAtual;
+    int diagMes = mesAtual;
+    int diagAno = anoAtual;
+    
     fprintf(Ponteiro, 
     "\n\nNome ----------------: %s\
     \rCPF -----------------: %s\n\
@@ -149,6 +152,7 @@ void salvar(Paciente *paciente) {
     \rCEP -----------------: %s\
     \rENDERECO COMPLETO ---: %s\
     \rData de nascimento --: %d/%d/%d\n\
+    \rData do diagnóstico -: %d/%d/%d\n\
     \rComorbidade ---------: %s\n\
     \r====================================\n", 
     paciente->nome, 
@@ -157,9 +161,8 @@ void salvar(Paciente *paciente) {
     paciente->email, 
     paciente->cep, 
     paciente->endereco, 
-    intDia, 
-    intMes, 
-    intAno, 
+    intDia, intMes, intAno,
+    diagDia, diagMes, diagAno,
     paciente->comorbidade); /* fprintf > escreve no arquivo ||| printf > escreve na tela */
     fclose(Ponteiro);
 

@@ -1,46 +1,154 @@
 
+CEP: 123
+Idade: 6422148
+
+CEP: 12312-321
+Idade: �a
+
+CEP: 12332-321
+Idade: 6422161
+
+CEP: 12312312
+Idade: 6422161
+
+CEP: 09876543
+Idade: 6422161
+
+CEP: 12312123
+Idade: 6422161
+
+CEP: 12312-123
+Idade: 82
+
+CEP: 09876-434
+Idade: 23
+
+CEP: 32321-321
+Idade: 23
+
+CEP: 12345-678
+Idade: 103
+
+CEP: 123
+Idade: 92
+
 Nome --------------: Joao Victor
 
-        Idade --------------: 103
-        CPF ----------------: 3215436547
-        CEP ----------------: 09876543
+        
+Idade --------------: 103
+        
+CPF ----------------: 3215436547
+        
+CEP ----------------: 09876543
 
-        Comorbidade---------: 
-        O Paciente foi identificado como pertencente ao grupo de risco.
+        
+Comorbidade---------: 
+        
+O Paciente foi identificado como pertencente ao grupo de risco.
 
 Nome --------------: joao
 
-        Idade --------------: 82
-        CPF ----------------: 1231231235
-        CEP ----------------: 32154-123
+        
+Idade --------------: 82
+        
+CPF ----------------: 1231231235
+        
+CEP ----------------: 32154-123
 
-        Comorbidade---------: Artrite
+        
+Comorbidade---------: Artrite
 
-        O Paciente foi identificado como pertencente ao grupo de risco.
+        
+O Paciente foi identificado como pertencente ao grupo de risco.
 
 Nome --------------: Joao Victor
-        Idade --------------: 88
-        CPF ----------------: 7566455343
-        CEP ----------------: 32187-543
-        Comorbidade---------: hipertensao
+        
+Idade --------------: 88
+        
+CPF ----------------: 7566455343
+        
+CEP ----------------: 32187-543
+        
+Comorbidade---------: hipertensao
 
-        O Paciente foi identificado como pertencente ao grupo de risco.
-        ====================================
+        
+O Paciente foi identificado como pertencente ao grupo de risco.
+        
+====================================
 
 Nome --------------: Joao
-        Idade --------------: 97
-        CPF ----------------: 1231231233
-        CEP ----------------: 03292-238
-        Comorbidade---------: atrofia muscular
+        
+Idade --------------: 97
+        
+CPF ----------------: 1231231233
+        
+CEP ----------------: 03292-238
+        
+Comorbidade---------: atrofia muscular
 
-        O Paciente foi identificado como pertencente ao grupo de risco.
-        ====================================
+        
+O Paciente foi identificado como pertencente ao grupo de risco.
+        
+====================================
 
 Nome --------------: Joao Victor
-        Idade --------------: 72
-        CPF ----------------: 5435438673
-        CEP ----------------: 05986-394
-        Comorbidade---------: hipertensao
+        
+Idade --------------: 72
+        
+CPF ----------------: 5435438673
+        
+CEP ----------------: 05986-394
+        
+Comorbidade---------: hipertensao
 
-        O Paciente foi identificado como pertencente ao grupo de risco.
-        ====================================
+        
+O Paciente foi identificado como pertencente ao grupo de risco.
+        
+====================================
+
+
+Nome ---------------: Joao Victor
+        
+Idade --------------: 73
+        
+CPF ----------------: 5128278494
+        
+CEP ----------------: 01503-010
+
+Comorbidade---------: hipertenssao
+
+        
+O Paciente foi identificado como pertencente ao grupo de risco.
+        
+====================================
+
+
+Nome ---------------: Joao Victor
+        
+Idade --------------: 68
+        
+CPF ----------------: 2884470289
+        
+CEP ----------------: 01503-010
+        
+Comorbidade---------: 
+        
+O Paciente foi identificado como pertencente ao grupo de risco.
+        
+====================================
+
+
+Nome ---------------: Joao Victor
+        
+Idade --------------: 76
+        
+CPF ----------------: 5246256423
+        
+CEP ----------------: 01503-010
+        
+Comorbidade---------: hipertensao
+
+        
+O Paciente foi identificado como pertencente ao grupo de risco.
+        
+====================================
