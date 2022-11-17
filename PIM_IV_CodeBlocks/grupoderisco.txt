@@ -19,3 +19,14 @@ Nome ---------------: Joao Victor
 
         O Paciente foi identificado como pertencente ao grupo de risco.
         ====================================
+
+
+Nome ---------------: Gustavo Henrique
+        Idade --------------: 87
+        CPF ----------------: 11122233344
+
+        CEP ----------------: 01234-567
+        Comorbidade---------: hipertensao
+
+        O Paciente foi identificado como pertencente ao grupo de risco.
+        ====================================
