@@ -1,0 +1,10 @@
+
+
+Nome ---------------: Maria Lima
+        Idade --------------: 66
+        CPF ----------------: 1239736409
+        CEP ----------------: 01234567
+        Comorbidade---------: hipertensao
+
+        O Paciente foi identificado como pertencente ao grupo de risco.
+        ====================================

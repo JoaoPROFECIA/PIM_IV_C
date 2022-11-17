@@ -1,0 +1,4 @@
+Login do aplicativo "cadastro_de_pacientes"
+
+login: admin
+senha: 123456

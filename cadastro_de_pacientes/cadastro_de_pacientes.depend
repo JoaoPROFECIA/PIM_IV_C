@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1668469983 source:c:\users\victo\onedrive - unip\unip\ads\2 - 2 - pim iv\pim_codeblocks\cadastro_de_pacientes\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<unistd.h>
+
