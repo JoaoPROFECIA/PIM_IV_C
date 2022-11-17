@@ -113,7 +113,7 @@ void cadastro(Paciente *paciente) {
             fflush(stdin);
             fgets(paciente->comorbidade, 50, stdin);
         } else if (paciente->resp[0] == 'n') {
-            printf("\nNao possui comorbidade\n");
+            strcpy(paciente->comorbidade, "Nao possui comorbidade");
         } else {
             printf("Opcao invalida\n");
         }
