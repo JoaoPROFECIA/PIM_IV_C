@@ -14,7 +14,7 @@ ENDERECO COMPLETO ---: Praca da Liberdade, 130, Liberdade, Sao Paulo, SP
     
 Data de nascimento --: 26/10/1999
     
-Data do diagnóstico -: 14/11/2022
+Data do diagnï¿½stico -: 14/11/2022
     
 Comorbidade ---------: 
     
@@ -35,9 +35,30 @@ ENDERECO COMPLETO ---: Praca da Liberdade, 130, Liberdade, Sao Paulo, SP
     
 Data de nascimento --: 15/4/1956
     
-Data do diagnóstico -: 14/11/2022
+Data do diagnï¿½stico -: 14/11/2022
     
 Comorbidade ---------: hipertensao
 
+    
+====================================
+
+
+Nome ----------------: Joao
+    
+CPF -----------------: 12345678923
+    
+Telefone ------------: 12345678912
+    
+Email ---------------: teste@teste.com
+    
+CEP -----------------: 09876321
+    
+ENDERECO COMPLETO ---: Praca da Liberdade, 130, Liberdade, Sao paulo, SP
+    
+Data de nascimento --: 26/10/1999
+    
+Data do diagnostico -: 17/11/2022
+    
+Comorbidade ---------: ï¿½j
     
 ====================================
