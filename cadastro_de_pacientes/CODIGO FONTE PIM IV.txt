@@ -73,37 +73,51 @@ void calculaIdade(Paciente *paciente) {
 void cadastro(Paciente *paciente) {
     printf(" -- Cadastro de paciente -- \n\n");
     printf("\nPreencha os dados abaixo\n\n");
-    printf("Nome: ");
-    fflush(stdin); /* stdin > limpa o buffer do teclado */
-    fgets(paciente->nome, 50, stdin); /* fgets > para ler espaços em branco usando o fgets ||| scanf > nao funciona com espacos em branco */
-    printf("CPF (somente numeros): ");
-    fflush(stdin);
-    fgets(paciente->cpf, 11, stdin);
-    printf("Telefone com DDD (somente numeros): ");
-    fflush(stdin);
-    fgets(paciente->telefone, 20, stdin);
-    printf("Email: ");
-    fflush(stdin);
-    fgets(paciente->email, 50, stdin);
-    printf("CEP: ");
-    fflush(stdin);
-    fgets(paciente->cep, 12, stdin);
-    printf("ENDERECO COMPLETO: ");
-    fflush(stdin);
-    fgets(paciente->endereco, 100, stdin);
-    calculaIdade(paciente);
-    printf("Possui alguma comorbidade? (s/n): ");
-    fflush(stdin);
-    fgets(paciente->resp, 2, stdin);
-    if (paciente->resp[0] == 's') {
-        printf("Qual? ");
+    do {
+        printf("Nome: ");
+        fflush(stdin); /* stdin > limpa o buffer do teclado */
+        fgets(paciente->nome, 50, stdin); /* fgets > para ler espacos em branco usando o fgets ||| scanf > nao funciona com espacos em branco */
+    } while (strlen(paciente->nome) <= 3 || strlen(paciente->nome) > 50);
+    do {
+        printf("CPF: ");
         fflush(stdin);
-        fgets(paciente->comorbidade, 50, stdin);
-    } else if (paciente->resp[0] == 'n') {
-        printf("\nNao possui comorbidade\n");
-    } else {
-        printf("Opcao invalida\n");
-    }
+        fgets(paciente->cpf, 50, stdin);
+    } while (strlen(paciente->cpf) < 11);
+    do {
+        printf("Telefone com DDD (somente numeros): ");
+        fflush(stdin);
+        fgets(paciente->telefone, 20, stdin);
+    } while (strlen(paciente->telefone) < 10);
+    do {
+        printf("Email: ");
+        fflush(stdin);
+        fgets(paciente->email, 50, stdin);
+    } while (strlen(paciente->email) < 5);
+    do {
+        printf("CEP: ");
+        fflush(stdin);
+        fgets(paciente->cep, 50, stdin);
+    } while (strlen(paciente->cep) < 8);
+    do {
+        printf("ENDERECO COMPLETO: ");
+        fflush(stdin);
+        fgets(paciente->endereco, 100, stdin);
+    } while (strlen(paciente->endereco) < 5);
+    calculaIdade(paciente);
+    do {
+        printf("Possui alguma comorbidade? (s/n): ");
+        fflush(stdin);
+        fgets(paciente->resp, 2, stdin);
+        if (paciente->resp[0] == 's') {
+            printf("Qual? ");
+            fflush(stdin);
+            fgets(paciente->comorbidade, 50, stdin);
+        } else if (paciente->resp[0] == 'n') {
+            strcpy(paciente->comorbidade, "Nao possui comorbidade");
+        } else {
+            printf("Opcao invalida\n");
+        }
+    } while (paciente->resp[0] != 's' && paciente->resp[0] != 'n');
 }
 
 /* funcao para login do profissional de saude */
@@ -118,9 +132,11 @@ void login(ProfSaude *profSaude) {
         scanf("%s", login1);
         printf("Senha: ");
         scanf("%s", senha1);
-        if (strcmp(login, login1) == 0 && strcmp(senha, senha1) == 0) 
+        if (strcmp(login, login1) == 0 && strcmp(senha, senha1) == 0)
         {
             printf("\nLogin efetuado com sucesso!\n\n");
+            sleep(1);
+            system("cls");
         } else {
             printf("\nLogin ou senha incorretos!\n\n");
         }
@@ -136,31 +152,31 @@ void salvar(Paciente *paciente) {
         printf("Erro na abertura do arquivo!");
         exit(1);
     }
-    
+
     int intDia = dia;
     int intMes = mes;
     int intAno = ano;
     int diagDia = diaAtual;
     int diagMes = mesAtual;
     int diagAno = anoAtual;
-    
-    fprintf(Ponteiro, 
+
+    fprintf(Ponteiro,
     "\n\nNome ----------------: %s\
-    \rCPF -----------------: %s\n\
+    \rCPF -----------------: %s\
     \rTelefone ------------: %s\
     \rEmail ---------------: %s\
     \rCEP -----------------: %s\
     \rENDERECO COMPLETO ---: %s\
     \rData de nascimento --: %d/%d/%d\n\
-    \rData do diagnóstico -: %d/%d/%d\n\
+    \rData do diagnostico -: %d/%d/%d\n\
     \rComorbidade ---------: %s\n\
-    \r====================================\n", 
-    paciente->nome, 
-    paciente->cpf, 
-    paciente->telefone, 
-    paciente->email, 
-    paciente->cep, 
-    paciente->endereco, 
+    \r====================================\n",
+    paciente->nome,
+    paciente->cpf,
+    paciente->telefone,
+    paciente->email,
+    paciente->cep,
+    paciente->endereco,
     intDia, intMes, intAno,
     diagDia, diagMes, diagAno,
     paciente->comorbidade); /* fprintf > escreve no arquivo ||| printf > escreve na tela */
@@ -173,18 +189,18 @@ void salvar(Paciente *paciente) {
             printf("Erro na abertura do arquivo!");
             exit(1);
             }
-        fprintf(Ponteiro2, 
+        fprintf(Ponteiro2,
         "\n\nNome ---------------: %s\
         \rIdade --------------: %d\n\
         \rCPF ----------------: %s\n\
         \rCEP ----------------: %s\
         \rComorbidade---------: %s\n\
         \rO Paciente foi identificado como pertencente ao grupo de risco.\n\
-        \r====================================\n", 
-        paciente->nome, 
-        idade, 
-        paciente->cpf, 
-        paciente->cep, 
+        \r====================================\n",
+        paciente->nome,
+        idade,
+        paciente->cpf,
+        paciente->cep,
         paciente->comorbidade);
         fclose(Ponteiro2);
     }
@@ -201,7 +217,7 @@ void menu() {
         printf("2 - Sair\n\n");
         printf("Opcao: ");
         scanf("\n%d", &opcao);
-        
+
         switch (opcao) {
             case 1:
                 cadastro(&paciente);
@@ -210,7 +226,7 @@ void menu() {
                 printf("1 - Retornar ao menu\n2 - Sair\n");
                 printf("Opcao: ");
                 scanf("\n%d", &opcao);
-                
+
                 if (opcao == 1) {
                     return (main());
                 }
@@ -225,7 +241,7 @@ void menu() {
                 }
 
             case 2: /* para encerrar o programa sem realizar o cadastro */
-                printf("Saindo"); 
+                printf("Saindo");
                 break;
                 default:
                 printf("Opcao invalida!\n");
