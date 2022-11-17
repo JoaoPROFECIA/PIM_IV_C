@@ -8,3 +8,14 @@ Nome ---------------: Maria Lima
 
         O Paciente foi identificado como pertencente ao grupo de risco.
         ====================================
+
+
+Nome ---------------: Joao Victor
+        Idade --------------: 102
+        CPF ----------------: 12345612354
+
+        CEP ----------------: 01234-567
+        Comorbidade---------: hipertensao
+
+        O Paciente foi identificado como pertencente ao grupo de risco.
+        ====================================

@@ -73,7 +73,7 @@ void calculaIdade(Paciente *paciente) {
 void cadastro(Paciente *paciente) {
     printf(" -- Cadastro de paciente -- \n\n");
     printf("\nPreencha os dados abaixo\n\n");
-    do { 
+    do {
         printf("Nome: ");
         fflush(stdin); /* stdin > limpa o buffer do teclado */
         fgets(paciente->nome, 50, stdin); /* fgets > para ler espacos em branco usando o fgets ||| scanf > nao funciona com espacos em branco */
