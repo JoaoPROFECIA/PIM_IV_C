@@ -135,6 +135,8 @@ void login(ProfSaude *profSaude) {
         if (strcmp(login, login1) == 0 && strcmp(senha, senha1) == 0)
         {
             printf("\nLogin efetuado com sucesso!\n\n");
+            sleep(1);
+            system("cls");
         } else {
             printf("\nLogin ou senha incorretos!\n\n");
         }
