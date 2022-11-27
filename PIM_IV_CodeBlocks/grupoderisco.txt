@@ -30,3 +30,14 @@ Nome ---------------: Gustavo Henrique
 
         O Paciente foi identificado como pertencente ao grupo de risco.
         ====================================
+
+
+Nome ---------------: Ezequiel Alves
+        Idade --------------: 85
+        CPF ----------------: 00011122233
+
+        CEP ----------------: 01122329
+        Comorbidade---------: esclerose multipla
+
+        O Paciente foi identificado como pertencente ao grupo de risco.
+        ====================================

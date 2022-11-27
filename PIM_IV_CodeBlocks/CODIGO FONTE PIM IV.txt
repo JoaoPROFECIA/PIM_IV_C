@@ -23,7 +23,6 @@ typedef struct paciente {
     char comorbidade[50];
     int idade[50];
     char resp [50];
-
 } Paciente;
 
 
